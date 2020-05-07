@@ -23,7 +23,15 @@ public class SkillTests {
         //then
         Range<Integer> attackAfterSkill = creature.getAttack();
         assertThat(attackAfterSkill).isEqualTo(Range.closed(55,110));
-
     }
+    
+    @Test
+    void learningShouldIncreaseEarnedExperience() {
+         Hero hero = Hero.builder().aEarnedExperience(100).build();
+         Skill learningSkill = new Skill(SkillInfoFactory.getSkill(SkillInfo.SkillType.LEARNING));
+         learningSkill.buffSkill(hero);
+         assertEquals(105, hero.getEarnedExperience());
+}
+
 
 }
